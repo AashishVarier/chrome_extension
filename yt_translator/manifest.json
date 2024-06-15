@@ -7,11 +7,11 @@
         {
           "matches": ["*://*.youtube.com/*"],
           "run_at": "document_end",
-          "js": ["browser_inject.js"]
+          "js": ["inject.js"]
         }
       ],
     "permissions": ["storage"],
-    "options_ui": { "page": "user_options.html" },
+    "options_ui": { "page": "options.html" },
     "content_security_policy": {},
     "host_permissions": ["*://*.youtube.com/*"]
   }

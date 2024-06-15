@@ -16,6 +16,8 @@
 
 	function TranslateButton_Translate() {
 		this.onclick = TranslateButton_SetState;
+		//fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${TARGET}&dt=t&q=${encodeURIComponent(this._otext.innerText)}`)
+		console.log(TARGET_API);
 		fetch(TARGET_API + `&tl=${TARGET_LAN}&dt=t&q=${encodeURIComponent(this._otext.innerText)}`)
 			.then(response => response.json()).then(json => {
 				for (let i = 0; i < json[0].length; i++) this._ntext.innerText += json[0][i][0].replace('\n', ' ');
@@ -56,10 +58,10 @@
 	const QS_BUTTON_CONTAINER = "#header>#header-author>yt-formatted-string, #header>#header-author>#published-time-text";
 
 	/* User settings */
-	var TRANSLATE_TEXT = "translate", UNDO_TEXT = "undo", TARGET_API = "target_api", TARGET_LAN = navigator.language || navigator.userLanguage;
+	var TRANSLATE_TEXT = "translate", UNDO_TEXT = "undo",TARGET_API = "target_api" ,TARGET_LAN = navigator.language || navigator.userLanguage;
 
 	if (typeof(chrome) !== "undefined" && typeof(chrome.storage) != "undefined")
-		chrome.storage.sync.get({target_api: TARGET_API, undo_text: UNDO_TEXT}, items => {
+		chrome.storage.sync.get({translate_text: TRANSLATE_TEXT, undo_text: UNDO_TEXT, target_api: TARGET_API}, items => {
 			TRANSLATE_TEXT = items.translate_text;
 			UNDO_TEXT = items.undo_text;
 			TARGET_API = items.target_api;
@@ -74,7 +76,10 @@
 		const observerConfig = {childList: true, subtree: true};
 		const commentObserver = new MutationObserver(e => {
 			for (let mut of e) {
-				if (mut.target.id == "contents") {
+				/*if (mut.target.tagName.toLowerCase() == "ytd-comments") {
+					commentObserver.disconnect();
+					commentObserver.observe(mut.target, observerConfig);
+				} else */if (mut.target.id == "contents") {
 					for (let n of mut.addedNodes) {
 						let main = n.querySelector("#body>#main");
 						if (!main) continue;

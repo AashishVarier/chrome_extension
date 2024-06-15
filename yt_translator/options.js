@@ -1,20 +1,14 @@
 let translate_text = document.getElementById("translate_text");
 let undo_text = document.getElementById("undo_text");
-let target_api
+let target_api = document.getElementById("other_api");
 
-if (document.getElementById('gAPI').checked) {
-    target_api = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto"
-  } 
-
-  if (document.getElementById('other').checked) {
-    target_api = document.getElementById("other_api");
-  }
 
 function save()
 {
+	console.log(target_api)
 	chrome.storage.sync.set({translate_text: translate_text.value,
 	                              undo_text: undo_text.value,
-                                  target_api:target_api.value,}, () => {});
+                                  target_api:target_api.value}, () => {});
 }
 
 function load()
