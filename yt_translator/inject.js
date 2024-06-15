@@ -16,13 +16,16 @@
 
 	function TranslateButton_Translate() {
 		this.onclick = TranslateButton_SetState;
-		//fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${TARGET}&dt=t&q=${encodeURIComponent(this._otext.innerText)}`)
-		console.log(TARGET_API);
-		fetch(TARGET_API + `&tl=${TARGET_LAN}&dt=t&q=${encodeURIComponent(this._otext.innerText)}`)
+
+		if(TARGET_API.localeCompare("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto")==0){
+			//fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${TARGET}&dt=t&q=${encodeURIComponent(this._otext.innerText)}`)
+			fetch(TARGET_API + `&tl=${TARGET_LAN}&dt=t&q=${encodeURIComponent(this._otext.innerText)}`)
 			.then(response => response.json()).then(json => {
 				for (let i = 0; i < json[0].length; i++) this._ntext.innerText += json[0][i][0].replace('\n', ' ');
 				this.onclick();
 			});
+		}
+		
 	}
 
 	function ResetTranslateButton(tb) {
