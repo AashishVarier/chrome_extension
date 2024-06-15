@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "yt_translator/variableduck",
+    "description": "Translate YouTube comments using Google API or your own API!",
+    "version": "1.0",
+    "content_scripts": [
+        {
+          "matches": ["*://*.youtube.com/*"],
+          "run_at": "document_end",
+          "js": ["browser_inject.js"]
+        }
+      ],
+    "permissions": ["storage"],
+    "options_ui": { "page": "user_options.html" },
+    "content_security_policy": {},
+    "host_permissions": ["*://*.youtube.com/*"]
+  }
