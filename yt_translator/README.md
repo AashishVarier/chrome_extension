@@ -1,6 +1,7 @@
 # Youtube translator
-+ This exetention is a modified version of the one found [here](https://github.com/toluschr/YouTube-Comment-Translate). The OP frequently updates his code based on browser version changes.
-+ This one Works on Chrome : Version 125.0.6422.142
++ Translate YouTube comments using Google API or your own API
++ This exetention is a modified version of the one found [here](https://github.com/toluschr/YouTube-Comment-Translate).
++ This one works on Chrome : Version 125.0.6422.142
 + Architecture:
     + ![plot](./doc/arch.JPG)
 + Manual Install : 
