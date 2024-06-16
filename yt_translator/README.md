@@ -6,3 +6,5 @@
     + Navigate to My Extention and click on Load unpacked. 
     + Navigate to the folder you extracted to and click open.
     + Once done, disable Developer mode.
++ Architecture
+    ![plot](./doc/arch.JPG)
